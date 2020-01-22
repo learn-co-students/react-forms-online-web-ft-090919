@@ -18,14 +18,37 @@ class Form extends React.Component {
     })
   }
 
-  render() {
-    return (
-      <form>
-        <input type="text" name="firstName" onChange={event => this.handleFirstNameChange(event)} value={this.state.firstName} />
-        <input type="text" name="lastName" onChange={event => this.handleLastNameChange(event)} value={this.state.lastName} />
-      </form>
-    )
+  handleSubmit = event => {
+    event.preventDefault()
+    formData = { firstName: this.state.firstName, lastName: this.state.lastName }
+    this.sendFormDataSomewhere(formData)
   }
+
+  listOfSubmissions = () => {
+    return this.state.submittedData.map(data => {
+      return <div><span>{data.firstName}</span> <span>{data.lastName}</span></div>
+    })
+  }
+
+    render() {
+      return (
+        <div>
+          <form>
+            <input
+              type="text"
+              onChange={event => this.props.handleFirstNameChange(event)}
+              value={this.props.formData.firstName}
+            />
+            <input
+              type="text"
+              onChange={event => this.props.handleLastNameChange(event)}
+              value={this.props.formData.lastName}
+            />
+          </form>
+        </div>
+      )
+    }
+
 }
 
 export default Form;
