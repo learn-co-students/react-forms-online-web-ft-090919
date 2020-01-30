@@ -5,6 +5,7 @@ class Form extends React.Component {
     firstName: "John",
     lastName: "Henry"
   }
+  
 
   handleFirstNameChange = event => {
     this.setState({
